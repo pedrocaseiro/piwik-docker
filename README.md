@@ -22,7 +22,7 @@
 
 Before installing, read the **Explanation** topic!
 
-Get a server running (we are using digital ocean Ubuntu Docker 1.11.2 on 14.04 image), since it already has Docker installed!
+Get a server running (I used a Digital Ocean Ubuntu Docker 1.11.2 on 14.04 image), since it already has Docker installed! You can use other image, as long as you install Docker in it.
 
 Clone this repository
 
