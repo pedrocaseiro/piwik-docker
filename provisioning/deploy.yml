@@ -1,0 +1,43 @@
+---
+- hosts: service
+  vars_files:
+    - group_vars/vars.yml
+  vars:
+    tmp_dir: ~/deploy-tmp
+    app_dir: ~/deploy-test
+  remote_user: deploy
+  tasks:
+    - name: Check Docker compose bin file presence
+      stat: path=/usr/local/bin/docker-compose
+      register: dockercompose
+      become: true
+      become_method: sudo
+    - name: Install docker compose
+      shell: curl -L https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+      when: dockercompose.stat.exists == false
+      become: true
+      become_method: sudo
+    - name: Apply executable permission
+      file: path=/usr/local/bin/docker-compose mode="u+x,g+x"
+      become: true
+      become_method: sudo
+    - name: Git pull
+      git: repo=git@github.com:pedrocaseiro/piwik-docker
+        dest={{tmp_dir}}
+        accept_hostkey=yes
+    - name: create the app_dir
+      file: path={{app_dir}} state=directory
+    - name: copy everything from tmp_dir to app_dir
+      shell: cp -R {{tmp_dir}}/* {{app_dir}}/ && sudo rm -R -f {{tmp_dir}}
+    - name: generate docker-compose.production.yml
+      template: src=templates/docker-compose.production.yml.j2 dest={{app_dir}}/docker-compose.production.yml
+    - name: Stop containers
+      shell: cd {{app_dir}} && sudo docker-compose -f docker-compose.production.yml stop
+    - name: Build docker images
+      shell: cd {{app_dir}} && sudo docker-compose -f docker-compose.production.yml build
+    - name: Remove application containers
+      shell: cd {{app_dir}} && sudo docker-compose -f docker-compose.production.yml rm -f
+    - name: Restart containers
+      shell: cd {{app_dir}} && sudo docker-compose -f docker-compose.production.yml up -d 
+    - name: Give correct write permissions to var/www/html/config
+      shell: cd {{app_dir}} && sudo docker-compose -f docker-compose.production.yml run --rm piwik chmod a+w /var/www/html/config

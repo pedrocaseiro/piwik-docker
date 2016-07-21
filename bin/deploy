@@ -1,0 +1,2 @@
+#!/bin/bash
+ANSIBLE_SSH_ARGS="-o ForwardAgent=yes" ansible-playbook provisioning/deploy.yml -i provisioning/hosts --ask-vault-pass -vvvv
