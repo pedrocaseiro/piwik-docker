@@ -32,6 +32,7 @@ Clone this repository
 - `$ provisioning/group_vars/vars.yml` - **YOUR USERNAME, YOUR PASSWORD, YOUR DATABASE NAME** - Replace these 3 fields with according to the username, password and database name you are gonna choose when doing the dashboard setup (this setup is explained a few lines below this one!)
 - `000-default.conf`and `default-ssl.conf` - **YOUREMAIL, URLOFTHEDASHBOARD, YOURCERTIFICATE, YOURCERTIFICATEKEY** - Replace these 4 fields with your own email, the url of your dashboard, your website ssl certificate file name and your website ssl certificate key file name. These last 2 can be generated [here](http://www.selfsignedcertificate.com/). Don't forget to copy them to the `certs` folder!
 
+Make sure you have Ansible installed. You can find the instructions [here](http://docs.ansible.com/ansible/intro_installation.html).
 Run the command `bin/deploy`, inside the repository. (you will be prompted to enter the vault password)
 
 Tcharam, the analytics dashboard will be running at your desired url. (If it is the first installation, you will be prompted to make the initial dashboard configuration. Make sure the database name, username and password match the ones you wrote at the `provisioning/group_vars/vars.yml` file!)
