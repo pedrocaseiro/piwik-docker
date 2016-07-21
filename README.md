@@ -31,7 +31,6 @@ Clone this repository
 - `$ provisioning/deploy.yml` - git: repo=git@github.com:**pedrocaseiro/piwik-docker** - In case you fork this repository, you should change the `pedrocaseiro/piwik-docker` to `yourgithubusername/repositoryname`
 - `$ provisioning/group_vars/vars.yml` - **YOUR USERNAME, YOUR PASSWORD, YOUR DATABASE NAME** - Replace these 3 fields with according to the username, password and database name you are gonna choose when doing the dashboard setup (this setup is explained a few lines below this one!)
 - `000-default.conf`and `default-ssl.conf` - **YOUREMAIL, URLOFTHEDASHBOARD, YOURCERTIFICATE, YOURCERTIFICATEKEY** - Replace these 4 fields with your own email, the url of your dashboard, your website ssl certificate and your website ssl certificate key. These last 2 can be generated [here](http://www.selfsignedcertificate.com/). Don't forget to copy them to `/etc/ssl/`.
-- 
 
 Run the command `bin/deploy`, inside the repository. (you will be prompted to enter the vault password)
 
