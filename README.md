@@ -34,7 +34,7 @@ Clone this repository
 
 Run the command `bin/deploy`, inside the repository. (you will be prompted to enter the vault password)
 
-Tcharam, the analytics dashboard will be running at analytics.nourishcare.co.uk. (If it is the first installation, you will be prompted to make the initial dashboard configuration. Make sure the database name, username and password match the ones you wrote at the `provisioning/group_vars/vars.yml` file!)
+Tcharam, the analytics dashboard will be running at your desired url. (If it is the first installation, you will be prompted to make the initial dashboard configuration. Make sure the database name, username and password match the ones you wrote at the `provisioning/group_vars/vars.yml` file!)
 
 If you make any changes, just run the command ``` $ bin/deploy ``` and everything should work properly.
 
@@ -46,7 +46,7 @@ password: yourpassword
 database: databasename
 ```
 
-After that encrypt your `provisioning/group_vars/vars.yml` file by using the following command:
+After that encrypt your `provisioning/group_vars/vars.yml` file by running the following command:
 ```
 $ ansible-vault encrypt vars.yml
 ```
