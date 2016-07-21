@@ -1,4 +1,6 @@
-## This is my implementation of piwik, the open-source analytics platform, using docker and ansible.
+#Piwik
+##
+## The open-source analytics platform, using docker and ansible.
 
 ### Explanation:
 
